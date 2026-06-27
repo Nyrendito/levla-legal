@@ -204,7 +204,7 @@
         <span class="doc">Privacy Policy</span>
       </div>
       <div class="meta">
-        <span>Last updated: June 6, 2026</span>
+        <span>Last updated: June 27, 2026</span>
         <a href="./index.html">&larr; Back to home</a>
       </div>
     </header>
@@ -217,7 +217,7 @@
         <h2>The short version</h2>
         <ul>
           <li><strong>What Levla does:</strong> it estimates your body-fat percentage from photos you take, builds a personalized daily plan (calorie, protein, step, and training targets), and tracks your progress over time.</li>
-          <li><strong>Your photos</strong> are stored in a private, per-user space and are only accessible to you. To produce a body-composition estimate, a scan photo is sent to <strong>Google</strong> (the Gemini API) through our secure backend. The text you type (such as meal and workout descriptions) and your profile details are sent to <strong>OpenAI</strong> to build and adjust your plan; under OpenAI&rsquo;s API policy that text is <strong>not</strong> used to train their models. <strong>Your photos are never sent to OpenAI.</strong></li>
+          <li><strong>Your photos</strong> are stored in a private, per-user space and are only accessible to you. To produce a body-fat estimate, your scan photos and basic details (sex, age, height, weight) are sent to <strong>OpenAI</strong> through our secure backend. The text you type (such as meal and workout descriptions) and your profile details are sent to <strong>OpenAI</strong> and <strong>Google</strong> to build and adjust your plan. Under these providers&rsquo; API policies, what we send is <strong>not</strong> used to train their AI models. We ask for your permission in the app before any of this is sent.</li>
           <li><strong>Apple Health</strong> is used only with your permission: we read your steps and weight to keep your plan accurate, and write your body-fat % and weight back. Health data is <strong>never</strong> sold and <strong>never</strong> used for advertising.</li>
           <li><strong>No advertising and no cross-app tracking.</strong> Levla contains no third-party analytics, advertising, or tracking SDKs, and shows no App Tracking Transparency prompt because we do not track you.</li>
           <li><strong>Subscriptions</strong> are billed by Apple. We never see or store your card number.</li>
@@ -257,8 +257,8 @@
 
       <h3>Account &amp; identity</h3>
       <ul>
-        <li>You can sign in with <strong>Sign in with Apple</strong>, with <strong>email and password</strong>, or <strong>anonymously</strong>.</li>
-        <li>We collect an <strong>email address</strong> when you sign in with email, or when you use Sign in with Apple and choose to share your email.</li>
+        <li>You sign in with <strong>Sign in with Apple</strong>. During onboarding the app may use a temporary <strong>anonymous</strong> session before you sign in.</li>
+        <li>We collect an <strong>email address</strong> only if you use Sign in with Apple and choose to share your email (you may also choose Apple&rsquo;s private relay address).</li>
         <li>We assign and store a <strong>user ID</strong> to identify your account. Authentication and our database are provided by <strong>Supabase</strong> (a hosted Postgres platform).</li>
       </ul>
 
@@ -312,19 +312,20 @@
       </ul>
 
       <h3>AI processing</h3>
-      <p><strong>Body-scan photos &rarr; Google.</strong> To estimate your body composition, a scan photo (accessed through a short-lived signed URL), together with basic biometrics (sex, age, height, weight), is sent to <strong>Google</strong>&rsquo;s Gemini API (model <code>gemini-2.5-flash</code>) through our secure backend, which runs as a Supabase Edge Function. Google returns the estimate to us. We are telling you plainly: <strong>your scan photos are processed by Google to generate your body-fat and muscle estimate.</strong> Scan photos are sent only to Google for this purpose, and are subject to Google&rsquo;s Gemini API data-use terms.</p>
-      <p><strong>Text you enter &rarr; OpenAI.</strong> The text you type &mdash; such as meal and workout descriptions &mdash; together with your profile details (sex, age, height, weight, goal) is sent to <strong>OpenAI</strong> (model <code>gpt-4o-mini</code>) through the same secure backend to estimate calories, parse workouts, and build and adjust your daily plan and moves. Under OpenAI&rsquo;s API data-usage policy, data submitted through the API is <strong>not</strong> used to train their models. <strong>Your scan photos are never sent to OpenAI.</strong></p>
+      <p>Before any of the processing below happens, Levla shows an in-app disclosure and asks for your permission. You can withdraw that permission at any time in the app (Profile &rarr; Data &amp; AI processing).</p>
+      <p><strong>Body-scan photos &rarr; OpenAI.</strong> To estimate your body fat, your scan photos (front and side, accessed through short-lived signed URLs), together with basic biometrics (sex, age, height, weight), are sent to <strong>OpenAI</strong> (models <code>gpt-4.1-mini</code> / <code>gpt-4o-mini</code>) through our secure backend, which runs as a Supabase Edge Function. OpenAI returns the estimate to us. We are telling you plainly: <strong>your scan photos are processed by OpenAI to generate your body-fat estimate.</strong> Under OpenAI&rsquo;s API data-usage policy, data submitted through the API is <strong>not</strong> used to train their models.</p>
+      <p><strong>Text you enter &rarr; OpenAI and Google.</strong> The text you type &mdash; such as meal and workout descriptions &mdash; together with your profile details (sex, age, height, weight, goal) is sent to <strong>OpenAI</strong> (model <code>gpt-4o-mini</code>) and to <strong>Google</strong>&rsquo;s Gemini API (model <code>gemini-2.5-flash</code>) through the same secure backend to estimate calories, parse workouts, and build and adjust your daily plan and moves. Under these providers&rsquo; API data-usage policies, data submitted through the API is <strong>not</strong> used to train their models.</p>
 
       <h2 id="legal">4. Legal bases for processing (GDPR)</h2>
       <p>Where the GDPR applies, we rely on the following legal bases:</p>
       <ul>
-        <li><strong>Consent</strong> — for processing your <strong>body-scan photos</strong> (including sending them to Google&rsquo;s Gemini API for analysis) and for accessing your <strong>Apple Health</strong> data. You may withdraw consent at any time (see <a href="#rights">Your privacy rights</a>).</li>
+        <li><strong>Consent</strong> — for processing your <strong>body-scan photos</strong> (including sending them to <strong>OpenAI</strong> for analysis) and for accessing your <strong>Apple Health</strong> data. You may withdraw consent at any time (see <a href="#rights">Your privacy rights</a>).</li>
         <li><strong>Performance of a contract</strong> — to provide the Levla app and your &ldquo;Levla Pro&rdquo; subscription, including authentication, generating your plan, and managing your subscription.</li>
         <li><strong>Legitimate interests</strong> — to keep the service secure, prevent abuse, debug, and operate Levla reliably. We balance these interests against your rights and freedoms.</li>
       </ul>
 
       <h2 id="share">5. Who we share data with (sub-processors)</h2>
-      <p>We do not sell your personal data. We share data only with the service providers below, each acting as a processor or sub-processor for the purposes described. Each is bound to protect your data consistent with this policy and applicable law.</p>
+      <p>We do not sell your personal data. We share data only with the service providers below, each acting as a processor or sub-processor for the purposes described. Each is contractually bound to protect your data to a standard at least equivalent to the protections in this policy, to use it only for the purposes we specify, and not to use it for their own purposes (including, for the AI providers, not to train their models on it).</p>
       <table>
         <thead>
           <tr>
@@ -340,14 +341,14 @@
             <td>Account &amp; identity, profile information, scan photos, derived data.</td>
           </tr>
           <tr>
-            <td><strong>Google</strong> (Gemini API)</td>
-            <td>AI analysis of a scan photo to produce your body-fat and muscle estimate.</td>
-            <td>A single scan photo per analysis (via short-lived signed URL), plus basic biometrics (sex, age, height, weight).</td>
+            <td><strong>OpenAI</strong></td>
+            <td>AI analysis of your scan photos to produce your body-fat estimate, plus parsing meal/workout text and generating parts of your daily plan. Not used to train OpenAI&rsquo;s models.</td>
+            <td>Your scan photos (via short-lived signed URLs) and basic biometrics (sex, age, height, weight), plus your profile and the text you enter.</td>
           </tr>
           <tr>
-            <td><strong>OpenAI</strong></td>
-            <td>AI generation of your plan and daily moves, and parsing of meal/workout text into structured logs. Not used to train OpenAI&rsquo;s models. <strong>Photos are never sent to OpenAI.</strong></td>
-            <td>Profile/biometrics and the text you enter (meal and workout descriptions). No photos.</td>
+            <td><strong>Google</strong> (Gemini API)</td>
+            <td>AI generation of parts of your daily plan and moves. Not used to train Google&rsquo;s models. <strong>No photos are sent to Google.</strong></td>
+            <td>Profile/biometrics, your goal, and the plan inputs you enter (text). No photos.</td>
           </tr>
           <tr>
             <td><strong>RevenueCat</strong></td>
@@ -370,7 +371,7 @@
       <h2 id="retention">7. Data retention</h2>
       <ul>
         <li>We keep your account, profile, photos, and derived data for as long as your account is active, so the app can show your history and progress.</li>
-        <li>Scan photos sent to Google for analysis are processed to return an estimate and are subject to Google&rsquo;s Gemini API data-use terms. The text and profile data sent to OpenAI for plan generation are subject to OpenAI&rsquo;s API retention practices; under OpenAI&rsquo;s API policy they are not used to train their models.</li>
+        <li>Scan photos sent to OpenAI for analysis are processed to return an estimate and are subject to OpenAI&rsquo;s API data-use terms; under OpenAI&rsquo;s API policy they are not used to train their models. The text and profile data sent to OpenAI and Google for plan generation are subject to those providers&rsquo; API retention practices and are likewise not used to train their models.</li>
         <li>When you request deletion of your account (see below), we delete your profile, scans/photos, and derived data, except where we are required to retain limited records to comply with legal obligations (for example, tax or transaction records held by Apple).</li>
         <li>The cached profile/goal on your device is cleared when you sign out.</li>
       </ul>
@@ -391,7 +392,7 @@
         <li><strong>Correct</strong> inaccurate or incomplete data.</li>
         <li><strong>Delete</strong> your data (see <a href="#deletion">Account &amp; data deletion</a>).</li>
         <li><strong>Export / portability</strong> — receive a copy of your data in a portable format.</li>
-        <li><strong>Withdraw consent</strong> — for photo processing or Apple Health access, at any time. You can revoke Health permissions in the iOS Settings app, and withdrawing consent does not affect processing already carried out.</li>
+        <li><strong>Withdraw consent</strong> — for AI processing of your photos and data, or for Apple Health access, at any time. You can turn off AI processing in the app at <strong>Profile &rarr; Data &amp; AI processing</strong>, and revoke Health permissions in the iOS Settings app. Withdrawing consent does not affect processing already carried out.</li>
         <li><strong>Object to or restrict</strong> certain processing, including processing based on our legitimate interests.</li>
       </ul>
       <p>To exercise any of these rights, email us at <a class="email" href="mailto:nyrendito@gmail.com">nyrendito@gmail.com</a>. We will respond within the timeframe required by applicable law. You also have the right to lodge a complaint with your local data protection authority. We do not sell your personal data or use it for cross-context behavioral advertising.</p>
@@ -418,7 +419,7 @@
     </main>
 
     <footer class="site">
-      <p>&copy; 2026 Levla. Last updated: June 6, 2026. &middot; <a href="./index.html">Home</a></p>
+      <p>&copy; 2026 Levla. Last updated: June 27, 2026. &middot; <a href="./index.html">Home</a></p>
     </footer>
 
   </div>
